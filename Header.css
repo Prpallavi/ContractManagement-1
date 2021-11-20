@@ -2,7 +2,7 @@ nav {
 	width: 100%; 
 	background-color:black; 
 	display: flex;
-
+     font-weight: bold;
 	justify-content: space-between;
 }
 .logo {
@@ -10,6 +10,7 @@ nav {
 	text-decoration: none;
 	color: #fff;
 	text-transform: uppercase;
+	font-size: x-large;
 }
 nav .nav-bar {
 	padding: 20px; 

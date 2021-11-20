@@ -4,6 +4,8 @@ import './Header.js';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import {Link,useNavigate,useLocation} from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function UpdateForm(props) {
   
@@ -13,7 +15,7 @@ const navigate=useNavigate()
  
    const[updateFname,setFname]=useState(location.state.firstname)
   const[updateCname,setCname]=useState(location.state.contractname)
-  const[updateCtype,setCtype]=useState(location.state.contractype)
+  const[updateCtype,setCtype]=useState(location.state.contracttype)
   const[updateamount,setAmount]=useState(location.state.amount)
   const[updateparties,setparties]=useState(location.state.parties)
   const[updatesdate,setsdate]=useState(location.state.startdate)
@@ -83,21 +85,12 @@ setCname(e.target.value)
           </div>
           <div class="input-box">
             <span class="details">Contract Type</span>
-            <select value={updateCtype} onChange={(e) => {
+            <input type="text" placeholder="contract type" value={updateCtype} onChange={(e) => {
 
 setCtype(e.target.value)
 
- }}>
-             <option value="select">Contract Type</option>
-                <option value="Insurance">Insurance</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Grooming">Grooming</option>
-                <option value="Food">Food</option>
-                <option value="Shopping">Shopping</option>
-                <option value="HealthCare">HealthCare</option>
-    
-              </select>
+ }}/>
+           
         
           </div>
           <div class="input-box">
@@ -123,11 +116,13 @@ setAmount(e.target.value)
           </div>
           <div class="input-box">
             <span class="details">Start Date</span>
-            <input type="date" placeholder="dd/mm/yyy"  value={updatesdate} onChange={(e) => {
+          <input type="date" placeholder="dd/mm/yyy"  value={updatesdate} onChange={(e) => {
 
 setsdate(e.target.value)
 
+
  }} />
+  {/* <DatePicker selected={updatesdate} onChange={date => setsdate(date)}/> */}
          
       
           </div>
@@ -139,8 +134,8 @@ setedate(e.target.value)
 
  }}/>
 </div>
-        <div class="button">
-            <input type="submit" value="Save"/>
+<div class="button">
+           
           </div>
           <div class="button">
             <input type="submit" value="Update" onClick={()=>{updateTask()

@@ -29,9 +29,9 @@ function App() {
        <Routes>
          <Route exact path="/updateform" element={<UpdateForm/>}/>
        </Routes>
-       {/*  <Routes>
+        <Routes>
          <Route exact path="/view" element={<View/>}/>
-       </Routes>  */}
+       </Routes>  
        
          </Router>
 

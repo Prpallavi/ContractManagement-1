@@ -1,74 +1,125 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import './Updatecontract.css';
+import './Header.js';
+import {useForm} from 'react-hook-form';
+import axios from 'axios';
+import {Link,useNavigate,useLocation} from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-
-const View = () => {
-
-  let history = useNavigate();
-
- 
- 
-/*    const[viewFname,setFname]=useState(location.state.firstname)
-  const[viewCname,setCname]=useState(location.state.contractname)
-  const[viewCtype,setCtype]=useState(location.state.contractype)
-  const[viewamount,setAmount]=useState(location.state.amount)
-  const[viewparties,setparties]=useState(location.state.parties)
-  const[viewsdate,setsdate]=useState(location.state.startdate)
-  const[viewedate,setedate]=useState(location.state.enddate)  */
+function UpdateForm(props) {
   
- /*  const [e, setView] = useState({
-    firstname: "",
-    contractname: "",
-    contracttype: "",
-    parties: "",
-    amount: "",
-    startdate:"",
-    enddate:""
-  });
-  const {id } = useParams();
-  useEffect(() => {
-    loadView();
-  }, []); */
-  const [view,setView]= useState([])
-  useEffect( ()=>{
-    loadView()
-    /* deleteBudget() */
-  },[])
-  const loadView = (id) => {
-    const res = axios.get(`http://localhost:9090/par_view/${id}`);
-    setView(res.data);
-  };
-  return (
-      <div>
-    <section class="container">
-    <h1></h1>
-      <div class="row">
-        <article class="card fl-left">
-        {view.map((e=>{
-            return(
-          <section class="card-cont">
-         
-              <div>
-            <h2>FIRST NAME : {e.firstname}</h2>
-            <h2>CONTRACT NAME : {e.contractname}</h2>
-            <h2>CONTRACT TYPE : {e.contracttype}</h2>
-            <h2>PARTIES: {e.parties}</h2>
-            <h2>AMOUNT: {e.amount}</h2>
-            <h2>START DATE: {e.startdate}</h2>
-            <h2>END DATE: {e.enddate}</h2>
-          </div>
-           
-          </section>
-          )
-        }))} 
-        </article>
-    </div>
-</section>
-</div>    
-);
-}
-
-export default View;
-
+const navigate=useNavigate()
+ const location=useLocation();
+  console.log(location.state);
  
+   const[updateFname,setFname]=useState(location.state.firstname)
+  const[updateCname,setCname]=useState(location.state.contractname)
+  const[updateCtype,setCtype]=useState(location.state.contracttype)
+  const[updateamount,setAmount]=useState(location.state.amount)
+  const[updateparties,setparties]=useState(location.state.parties)
+  const[updatesdate,setsdate]=useState(location.state.startdate)
+  const[updateedate,setedate]=useState(location.state.enddate) 
+  const page=()=>{
+
+    navigate('/details')
+
+  }
+  const updateTask =()=>{
+    axios.put('http://localhost:9090/update_contract',{
+        _id:location.state._id,
+        firstname:updateFname,
+        contractname: updateCname,
+        contracttype:updateCtype,
+    parties: updateparties,
+    amount: updateamount,
+    startdate: updatesdate,
+    enddate:updateedate
+    }).then((res)=>{
+      console.log(res)
+    page()
+    })
+    
+}      
+
+
+
+
+
+
+
+
+
+ /*   const {register, handleSubmit,handleChange,formState:{errors,reset},setValue} = useForm();
+const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
+{Fileddata:data} 
+).then((res)=>{console.log(res.data)
+ })}  */
+    return(
+      <div className="bdy">
+        <div class="container">
+    <div class="title">View Contract</div>
+    <div class="content">
+      <form action="/details" >
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">First Name</span>
+           <h3>{updateFname}</h3>
+            
+          </div>
+          
+           
+       
+          <div class="input-box">
+            <span class="details">Contract Name</span>
+           <h3>{updateCname} </h3>
+            
+          </div>
+          <div class="input-box">
+            <span class="details">Contract Type</span>
+           <h3>{updateCtype} </h3>
+           
+        
+          </div>
+          <div class="input-box">
+            <span class="details">Parties</span>
+            <h3>{updateparties} 
+
+ </h3>
+            </div>
+          <div class="input-box">
+            <span class="details">Amount</span>
+            <h3> {updateamount} </h3> 
+         
+         
+          </div>
+          <div class="input-box">
+            <span class="details">Start Date</span>
+         <h3> {updatesdate}</h3>
+          </div>
+          <div class="input-box">
+            <span class="details">End Date</span>
+           <h3>{updateedate} </h3>
+</div>
+          
+       
+<div class="button">
+            <input type="submit" value="Back" onClick={()=>{updateTask()
+                         setFname('')
+                        setCname('')
+                        setCtype('')
+                        setAmount('')
+                        setparties('')
+                        setsdate('')
+                        setedate('') 
+                        }}/>
+          </div>
+          </div>
+        </form>
+       
+        </div>
+    </div>
+    </div>
+    );
+}
+export default UpdateForm;

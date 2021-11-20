@@ -6,8 +6,8 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: linear-gradient(135deg, #ff6666, #ff99cc);
-
+  background-image:url("https://media.istockphoto.com/photos/balance-spheres-minimal-concept-picture-id1141238986?k=20&m=1141238986&s=612x612&w=0&h=ivxorNK2eXZjAzWYh1JMPJ7NrwJ9mzZfQVZtR92LHG0=");
+  background-size: cover;
 }
 .container{
   max-width: 700px;
@@ -30,7 +30,7 @@
   height: 3px;
   width: 30px;
   border-radius: 5px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  background: linear-gradient(135deg, #ff6666, #ff99cc);
 }
 .content form .user-details{
   display: flex;
@@ -141,11 +141,11 @@ form .input-box span.details{
    font-weight: 500;
    cursor: pointer;
    transition: all 0.3s ease;
-   background: linear-gradient(135deg, #71b7e6, #9b59b6);
+   background: linear-gradient(135deg, black,rgb(31, 30, 30));
  }
  form .button input:hover{
   /* transform: scale(0.99); */
-  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  background: linear-gradient(-135deg, black,rgb(31, 30, 30));
   }
  @media(max-width: 584px){
  .container{

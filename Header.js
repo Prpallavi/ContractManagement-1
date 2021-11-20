@@ -6,6 +6,7 @@ function Nav() {
     return(
     <div>
       <nav>
+		  
 	<a class="logo" href="#">Contract</a>
 	<ul class="nav-bar">
         

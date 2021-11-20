@@ -1,19 +1,297 @@
-import React,{ useState } from 'react';
+import React,{ useState,useEffect } from 'react';
 import './Registration Form.css';
 import {useForm} from 'react-hook-form';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 /* import { Link } from 'react-router-dom'; */
 function Form() {
-  let history = useNavigate();
+/*  const details=new FormData(); */
 
-  const {register, handleSubmit,handleChange,formState:{errors,reset},setValue} = useForm();
-const onSubmit=(data)=>{axios.post("http://localhost:9090/add",
-{data} 
-).then((res)=>{console.log(res.data)
- })}
+
+  const validEmail = new RegExp(
+    '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'
+ );
+  const validMobile = new RegExp('^[6-9]\d{9}$');
+  let history = useNavigate();
+  const[Fname,setFname]=useState(() =>{
+    const saved = localStorage.getItem("firstname");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
+  const[Cname,setCname]=useState(() =>{
+    const saved = localStorage.getItem("contractname");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
+  
+  const[Ctype,setCtype]=useState(() =>{
+    const saved = localStorage.getItem("contracttype");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
+  const[amount,setAmount]=useState(() =>{
+    const saved = localStorage.getItem("amount");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
+  const[parties,setparties]=useState(() =>{
+    const saved = localStorage.getItem("parties");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
+  const[sdate,setsdate]=useState(() =>{
+    const saved = localStorage.getItem("startdate");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
+  const[edate,setedate]=useState(() =>{
+    const saved = localStorage.getItem("enddate");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  }) 
+  const[lname,setlname]=useState(() =>{
+    const saved = localStorage.getItem("lastname");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  }) 
+  const[gender,setgender]=useState(() =>{
+    const saved = localStorage.getItem("gender");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  }) 
+  const[email,setemail]=useState(() =>{
+    const saved = localStorage.getItem("email");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  }) 
+  const[mobile,setmobile]=useState(() =>{
+    const saved = localStorage.getItem("mobile");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  }) 
+  const[comp,setcomp]=useState(() =>{
+    const saved = localStorage.getItem("company");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  }) 
+  const[dept,setdept]=useState(() =>{
+    const saved = localStorage.getItem("department");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  }) 
+  const[ufile,setufile]=useState("")
+  /* () =>{
+    const saved = localStorage.getItem("file");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })  */
+  const[adrs,setadrs]=useState(() =>{
+    const saved = localStorage.getItem("address");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
+  const[desc,setdesc]=useState(() =>{
+    const saved = localStorage.getItem("description");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
+  useEffect(() => {
+    // storing input name
+    localStorage.setItem("firstname", JSON.stringify(Fname));
+    localStorage.setItem("contractname", JSON.stringify(Cname));
+    localStorage.setItem("contracttype", JSON.stringify(Ctype));
+    localStorage.setItem("parties", JSON.stringify(parties));
+    localStorage.setItem("amount", JSON.stringify(amount));
+    localStorage.setItem("startdate", JSON.stringify(sdate));
+    localStorage.setItem("enddate", JSON.stringify(edate));
+    localStorage.setItem("lastname", JSON.stringify(lname));
+    localStorage.setItem("gender", JSON.stringify(gender));
+    localStorage.setItem("email", JSON.stringify(email));
+    localStorage.setItem("mobile", JSON.stringify(mobile));
+    localStorage.setItem("company", JSON.stringify(comp));
+    localStorage.setItem("department", JSON.stringify(dept));
+  /*   localStorage.setItem("file", JSON.stringify(ufile)); */
+    localStorage.setItem("address", JSON.stringify(adrs));
+    localStorage.setItem("description", JSON.stringify(desc));
+  }, [Fname,Cname,Ctype,parties,amount,sdate,edate,lname,gender,email,mobile,comp,dept,adrs,desc]);
+  
+  
+
+ /*  details.append("firstname",Fname); */
+ 
+
+  const[ErrorFname,setErrorFname]=useState("")
+  const[ErrorCname,setErrorCname]=useState("")
+  const[ErrorCtype,setErrorCtype]=useState("")
+  const[Erroramount,setErrorAmount]=useState("")
+  const[Errorparties,setErrorparties]=useState("")
+  const[Errorsdate,setErrorsdate]=useState("")
+  const[Erroredate,setErroredate]=useState("") 
+  const[Errorlname,setErrorlname]=useState("") 
+  const[Errorgender,setErrorgender]=useState("") 
+  const[Erroremail,setErroremail]=useState("") 
+  const[Errormobile,setErrormobile]=useState("") 
+  const[Errorcomp,setErrorcomp]=useState("") 
+  const[Errordept,setErrordept]=useState("")
+  const[Errorufile,setErrorufile]=useState("")  
+  const[Erroradrs,setErroradrs]=useState("")
+  const[Errordesc,setErrordesc]=useState("")
+
+  
+  
+
+
+  const FormValidation =()=>{axios.post("  http://localhost:9090/add",
+  {firstname:Fname,contractname:Cname,contracttype:Ctype,parties:parties,amount:amount,startdate:sdate,enddate:edate,lastname:lname,gender:gender,
+  email:email,mobile:mobile,companyname:comp,department:dept,file:ufile,address:adrs,description:desc} 
+ ).then((res)=>{console.log(res.data)
+  history('/details')})
+/*   localStorage.setItem("userdetails",details) */
+}
+ 
+/* const startdate = `${sdate.getMonth()+1}/${sdate.getDate()}/${sdate.getFullYear()}`;
+console.log(startdate);
+
+const enddate = `${edate.getMonth()+1}/${sdate.getDate()}/${edate.getFullYear()}`;
+console.log(enddate); */
+ /*  const handleFile=(e)=>{
+ /*    setfile(e.target.value) 
+setErrorufile("")
+  setufile(e.target.files[0]);
+  console.log(ufile)
+  }
+  const formp= new FormData();
+formp.append("ufile",ufile) */
+
+/* let optionItems = Ctype.map((ct) =>
+<option key={ct.contracttype}>{ct.contracttype}</option>
+); */
+
 /*   console.log(data) */
+const validate = (e) => {
+
+  e.preventDefault()
+
+  if(Fname==="" || Cname==="" || Ctype==="" || parties===""|| amount===""||  sdate===""|| edate===""|| lname===""||
+  gender===""||email===""|| mobile===""|| comp===""|| dept===""|| ufile===""|| adrs===""|| desc===""){
+    if(Fname === ""){
+      setErrorFname("*ENTER THE FIRST NAME")
+    }
+    else{
+      setErrorFname("")
+    }
+    if(Cname === ""){
+      setErrorCname("*ENTER THE CONTRACT NAME")
+    }
+    else{
+      setErrorCname("")
+    }
+    if(Ctype === ""){
+      setErrorCtype("*SELECT CONTRACT TYPE")
+    }
+    else{
+      setErrorCtype("")
+    }
+    if(parties === ""){
+      setErrorparties("*ENTER THE PARTIES")
+    }
+    else{
+      setErrorparties("")
+    }
+    if (amount === "") {
+
+      setErrorAmount("*ENTER THE AMOUNT")
+
+  }
+  else {
+      setErrorAmount("")
+  }
+  if (sdate === "") {
+    setErrorsdate("*CHOOSE THE START DATE")
+  }
+  else {
+    setErrorsdate("")
+  }
+  if (edate === "") {
+    setErroredate("*CHOOSE THE DATE GREATER THAN STARTDATE")
+  }
+  else {
+    setErroredate("")
+  }
+    if(lname === ""){
+      setErrorlname("*ENTER YOUR LAST NAME")
+    }
+    else{
+      setErrorlname("")
+    }
+    if(gender === ""){
+      setErrorgender("*ENTER YOUR GENDER")
+    }
+    else{
+      setErrorgender("")
+    }
+    if(email === ""){
+      if( !validEmail.test(email)){
+        setErroremail("*ENTER VALID EMAIL ID")
+      }
+     
+    }
+    else{
+      setErroremail("")
+    }
+    if(mobile === "" ){
+      if(!validMobile.test(mobile))
+      setErrormobile("*ENTER VALID MOBILE NUMBER")
+    }
+    else{
+      setErrormobile("")
+    }
+    if(comp === ""){
+      setErrorcomp("*ENTER THE COMPANY NAME")
+    }
+    else{
+      setErrorcomp("")
+    }
+    if(dept === ""){
+      setErrordept("*ENTER YOUR DEPARTMENT")
+    }
+    else{
+      setErrordept("")
+    }
+    if(ufile === ""){
+      setErrorufile("*CHOOSE THE FILE ")
+    }
+    else{
+      setErrorufile("")
+    }
+    if(adrs === ""){
+      setErroradrs("*ENTER YOUR ADDRESS")
+    }
+    else{
+      setErroradrs("")
+    }
+
+   
+    if (desc === ""){
+      setErrordesc("*ENTER THE DESCRIPTION")
+    }
+    else{
+      setErrordesc("")
+    }
+   
+  }
+
+ else{
+  FormValidation()
+
+ } 
+
+}
+
 
 
     return(
@@ -22,107 +300,171 @@ const onSubmit=(data)=>{axios.post("http://localhost:9090/add",
 <div class="container">    
     <div class="title">Registration</div>
     <div class="content">
-      <form onSubmit={handleSubmit(onSubmit)}  method="post">
+      <form action="#" onsubmit="return validateForm()" method="post">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
-            <input type="text" placeholder="first name"   {...register("firstname", { required: "First Name is Required" })}/>
-            {errors.firstname && (<p className="errorshow">{errors.firstname.message}</p>)}
+            <input type="text" placeholder="first name"  value={Fname} style={{borderColor:ErrorFname=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setFname(e.target.value)
+
+setErrorFname("") }} />
+<div style={{color:"red",fontSize:"15px"}}>{ErrorFname === "" ? "" : ErrorFname}</div>  
          </div>
          <div class="input-box">
             <span class="details">Contract Name</span>
-            <input type="text" placeholder="contract name"  {...register("contractname", { required: "Contract Name is Required" })}/>
-            {errors.contractname && (<p className="errorshow">{errors.contractname.message}</p>)}
+            <input type="text" placeholder="contract name" value={Cname} style={{borderColor:ErrorCname=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setCname(e.target.value)
+
+setErrorCname("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{ErrorCname === "" ? "" : ErrorCname}</div>  
           </div>
           <div class="input-box">
             <span class="details">Contract Type</span>
-            <select {...register("contracttype", { required: "Contract Type is Required" })} >{errors.contracttype && (<p className="errorshow">{errors.contracttype.message}</p>)}
+            <input type="text" value={Ctype} style={{borderColor:ErrorCtype=== "" ?"#004680":'red'}} onChange={(e) => {
+setCtype(e.target.value)
 
-                <option value="select">Contract Type</option>
-                <option value="Insurance">Insurance</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Grooming">Grooming</option>
-                <option value="Food">Food</option>
-                <option value="Shopping">Shopping</option>
-                <option value="HealthCare">HealthCare</option>
+setErrorCtype("") }} />{/* {optionItems} */}
+<div style={{color:"red",fontSize:"15px"}}>{ErrorCtype === "" ? "" : ErrorCtype}</div>  
+  
+ 
     
-                </select>
+                
           </div>
           <div class="input-box">
             <span class="details">Parties</span>
-            <input type="text" placeholder="parties"  {...register("parties", { required: "Parties is Required" })}/>
-            {errors.parties && (<p className="errorshow">{errors.parties.message}</p>)}
+            <input type="text" placeholder="parties" value={parties} style={{borderColor:Errorparties=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setparties(e.target.value)
+
+setErrorparties("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Errorparties === "" ? "" : Errorparties}</div>  
           </div>
           <div class="input-box">
             <span class="details">Amount</span>
-            <input type="text" placeholder="amount" {...register("amount", { required: "Amount is Required" })} />
-            {errors.amount && (<p className="errorshow">{errors.amount.message}</p>)}
+             <input type="text" placeholder="amount" value={amount} style={{borderColor:Erroramount=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setAmount(e.target.value)
+
+setErrorAmount("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Erroramount === "" ? "" : Erroramount}</div>  
+
 
    
           </div>
           <div class="input-box">
             <span class="details">Start Date</span>
-            <input type="date" placeholder="date"  {...register("startdate", { required: "Start Date is required" })}/>
-            { errors.startdate && (<p className="errorshow">{errors.startdate.message}</p>) }
+      
+            <input type="date" placeholder="date" value={sdate} style={{borderColor:Errorsdate=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setsdate(e.target.value)
+
+setErrorsdate("") }}/> 
+             {/*  <DatePicker  selected={sdate} disableClock={true} style={{borderColor:Erroredate=== "" ?"#004680":'red'}}
+             onChange={(date) => {
+              {setsdate(date)}
+          
+                setErrorsdate("")}} placeholderText="date" />   */}
+
+
+<div style={{color:"red",fontSize:"15px"}}>{Errorsdate === "" ? "" : Errorsdate}</div>   
          {/*    {errors.startdate && (<p className="errorshow">{errors.startdate.message}</p>)}     */}
+      {/*    <DatePicker 
+     selected={edate}
+    onChange={date => setedate(date)}
+    minDate={new Date(sdate)} //<-- here put as minDate the startDate so user cannot select a date less than startDate
+    placeholderText="Select a date"
+/>    */}
           </div>
 
          
           <div class="input-box">
             <span class="details">End Date</span>
-            <input type="date" placeholder="date"  {...register("enddate", { required: "End Date is Required" })} />
-            { errors.enddate  && (<p className="errorshow">{errors.enddate.message}</p>) }
+              <input type="date" placeholder="date" value={edate} style={{borderColor:Erroredate=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setedate(e.target.value)
+
+setErroredate("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Erroredate === "" ? "" : Erroredate}</div>    
+ {/* <DatePicker selected={edate} disableClock={true} style={{borderColor:Erroredate=== "" ?"#004680":'red'}}
+    onChange={date => {setedate(date)
+      setedate(date)
+
+      setErroredate("") }} 
+    minDate={new Date(sdate)} //<-- here put as minDate the startDate so user cannot select a date less than startDate
+    placeholderText="Select a date"  dateFromat='YYYY-MM-dd' 
+/> */}
+<div style={{color:"red",fontSize:"15px"}}>{Erroredate === "" ? "" : Erroredate}</div>
             {/* { errors.ed?.type === "istartdateateInFuture" && <p>Please choose Future date!</p> } */}
           {/*   {errors.ed && (<p className="errorshow">{errors.ed.message}</p>)}   */}   
+        
           </div>
 
           <div class="input-box">
             <span class="details">Last Name</span>
-            <input type="text" placeholder="last name" {...register("lastname", { required: "Last Name is Required" })} />
-            {errors.lastname && (<p className="errorshow">{errors.lastname.message}</p>)}
+            <input type="text" placeholder="last name" value={lname} style={{borderColor:Errorlname=== "" ?"#004680":'red'}} onChange={(e) => {
 
+setlname(e.target.value)
+
+setErrorlname("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Errorlname === "" ? "" : Errorlname}</div>  
    
           </div>
           <div class="input-box">
             <span class="details">Gender</span>
-            <input type="text" placeholder="gender"  {...register("gender", { required: "Gender is Required" })} 
-            />{errors.gender && (<p className="errorshow">{errors.gender.message}</p>)}
-        
+            <input type="text" placeholder="gender"  value={gender} style={{borderColor:Errorgender=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setgender(e.target.value)
+
+setErrorgender("") }}/>
+        <div style={{color:"red",fontSize:"15px"}}>{Errorgender === "" ? "" : Errorgender}</div>  
           </div>
          
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" placeholder="email"  {...register("email", { required:'' ,
-           pattern:  { value:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/,message:"Invalid Email Address"}})} />
-           {errors.email && (<p className="errorshow">{errors.email.message}</p>)} 
+            <input type="text" placeholder="email" value={email} style={{borderColor:Erroremail=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setemail(e.target.value)
+
+setErroremail("") }}/>
             
-          
+            <div style={{color:"red",fontSize:"15px"}}>{Erroremail === "" ? "" : Erroremail}</div>  
 
           </div>
 
           <div class="input-box">
             <span class="details">Mobile</span>
-            <input type="text" placeholder="mobile"    {...register("mobile", { required:'' ,
-           pattern:  { value:/^[6-9]\d{9}$/,message:"Invalid Mobile No."}})} />
-           {errors.mobile && (<p className="errorshow">{errors.mobile.message}</p>)} 
+            <input type="text" placeholder="mobile"  value={mobile} style={{borderColor:Errormobile=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setmobile(e.target.value)
+
+setErrormobile("") }}/> 
             
-         
+            <div style={{color:"red",fontSize:"15px"}}>{Errormobile === "" ? "" : Errormobile}</div>  
           </div>
 
           
          
           <div class="input-box">
             <span class="details">Company Name</span>
-            <input type="text" placeholder="company name"  {...register("companyname", { required: "Company Name is Required" })}/>
-            {errors.companyname && (<p className="errorshow">{errors.companyname.message}</p>)}
+            <input type="text" placeholder="company name" value={comp} style={{borderColor:Errorcomp=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setcomp(e.target.value)
+
+setErrorcomp("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Errorcomp === "" ? "" : Errorcomp}</div>  
           </div>
 
           
           <div class="input-box">
             <span class="details">Department</span>
-            <input type="text" placeholder="department"  {...register("department", { required: "Department is Required" })}/>
-            {errors.department && (<p className="errorshow">{errors.department.message}</p>)}
+            <input type="text" placeholder="department" value={dept} style={{borderColor:Errordept=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setdept(e.target.value)
+
+setErrordept("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Errordept === "" ? "" : Errordept}</div>  
           </div>
 
          
@@ -131,34 +473,38 @@ const onSubmit=(data)=>{axios.post("http://localhost:9090/add",
 
           <div class="input-box">
             <span class="details">File Upload</span>
-            <input type="file" placeholder="Choose File"   {...register("file", { required: "File is Required" })} />
-            {errors.file && (<p className="errorshow">{errors.file.message}</p>)}
+            <input type="file" placeholder="Choose File" value={ufile} style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={(e) => {
+              setufile(e.target.value)
+
+setErrorufile("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Errorufile === "" ? "" : Errorufile}</div>  
           </div>
 
           <div class="input-box">
             <span class="details">Address</span>
-            <textarea placeholder="address"  {...register("addrerss", { required: "Address is Required" })} />    
-             {errors.address && (<p className="errorshow">{errors.address.message}</p>)}
+            <textarea placeholder="address" value={adrs} style={{borderColor:Erroradrs=== "" ?"#004680":'red'}} onChange={(e) => {
 
+setadrs(e.target.value)
+
+setErroradrs("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Erroradrs === "" ? "" : Erroradrs}</div>  
           </div>
           <div class="input-box">
             <span class="details">Description</span>
-            <textarea placeholder="description"   {...register("description", { required: "Description is Required"})} />
-             {errors.description && (<p className="errorshow">{errors.description.message}</p>)}
-           
+            <textarea placeholder="description"  value={desc} style={{borderColor:Errordesc=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setdesc(e.target.value)
+
+setErrordesc("") }} />
+           <div style={{color:"red",fontSize:"15px"}}>{Errordesc === "" ? "" : Errordesc}</div>  
 
           </div>
       
        
 
+         
           <div class="button">
-            <input type="submit" value="Save"/>
-          </div>
-          <div class="button">
-            <input type="submit" value="Submit" onClick={() => {
-                         
-                       history('/details') 
-                     }}/>
+            <input type="submit" value="Submit"  onClick={(e) => validate(e)} />
           </div>
           </div>
         </form>

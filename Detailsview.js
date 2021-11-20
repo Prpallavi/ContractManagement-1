@@ -118,12 +118,12 @@ const [diff,setDiff]=useState("");
          <li class="table-row">
            <div class="col col-1" data-label="First Name">{e.firstname}</div>
            <div class="col col-2" data-label="Contract Name">{e.contractname}</div>
-           <div class="col col-3" data-label="Contract Type">{e.contracttype}</div>
+           <div class="col col-3" data-label="ContractType">{e.contracttype}</div>
            <div class="col col-5" data-label="Parties">{e.parties}</div>
            <div class="col col-4" data-label="Amount">{e.amount}</div>
            <div class="col col-6" data-label="Start Date">{e.startdate}</div>
-           <div class="col col-7" data-label="End Date">{e.enddate}</div>
-           <div class="col col-8" style={{color:daysleft<0?"red" :"#004680"}} data-label="Status">{daysleft<0?"expired":"running"}</div> 
+           <div class="col col-7" data-label="Due Date">{e.enddate}</div>
+           <div class="col col-8" style={{color: daysleft<=0?"red":"green"}} data-label="Status">{daysleft<=0?"expired":daysleft<30?"expiring soon":"running"}</div> 
            <div class="col col-8" data-label="Action" > 
 
            <button type="button" class="budgetbutton2" >
