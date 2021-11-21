@@ -83,7 +83,7 @@ let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   }) 
-  const[ufile,setufile]=useState("")
+  const[ufile,setUfile]=useState()
   /* () =>{
     const saved = localStorage.getItem("file");
     const initialValue = JSON.parse(saved);
@@ -143,20 +143,24 @@ let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\
 
   
   
-  /* const handleFile=(e)=>{
-    setufile(e.target.value) 
+   const handleFile=(e)=>{
+  /*   setufile(e.target.value)  */
     setErrorufile("")
-    setufile(e.target.files[0]);
+    setUfile(e.target.files[0]);
     console.log(ufile) 
+   
+    } 
     const formp= new FormData();
-    formp.append("ufile",ufile)
-    } */
+    /* ufileformp.append("firstname",Fname)
+    formp.append("lastname",lname)
+    formp.append("gender",gender) */
+    formp.append("ufile",ufile) 
    
 
   const FormValidation =()=>{axios.post("  http://localhost:9090/add",
   {firstname:Fname,contractname:Cname,contracttype:Ctype,parties:parties,amount:amount,startdate:sdate,enddate:edate,lastname:lname,gender:gender,
   email:email,mobile:mobile,companyname:comp,department:dept,file:ufile,address:adrs,description:desc} 
- ).then((res)=>{console.log(res.data)
+).then((res)=>{console.log(res.data)
   history('/details')})
 
 }
@@ -306,7 +310,7 @@ const validate = (e) => {
 <div class="container">    
     <div class="title">Registration</div>
     <div class="content">
-      <form action="#" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
+      <form  onsubmit="return validateForm()" method="post" encType="multipart/form-data">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
@@ -317,6 +321,48 @@ setFname(e.target.value)
 setErrorFname("") }} />
 <div style={{color:"red",fontSize:"15px"}}>{ErrorFname === "" ? "" : ErrorFname}</div>  
          </div>
+         <div class="input-box">
+            <span class="details">Last Name</span>
+            <input type="text" placeholder="last name" value={lname} style={{borderColor:Errorlname=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setlname(e.target.value)
+
+setErrorlname("") }}/>
+<div style={{color:"red",fontSize:"15px"}}>{Errorlname === "" ? "" : Errorlname}</div>  
+   
+          </div>
+          <div class="input-box">
+            <span class="details">Gender</span>
+            <input type="text" placeholder="gender"  value={gender} style={{borderColor:Errorgender=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setgender(e.target.value)
+
+setErrorgender("") }}/>
+        <div style={{color:"red",fontSize:"15px"}}>{Errorgender === "" ? "" : Errorgender}</div>  
+          </div>
+         
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" placeholder="email" value={email} style={{borderColor:Erroremail=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setemail(e.target.value)
+
+setErroremail("") }}/>
+            
+            <div style={{color:"red",fontSize:"15px"}}>{Erroremail === "" ? "" : Erroremail}</div>  
+
+          </div>
+
+          <div class="input-box">
+            <span class="details">Mobile</span>
+            <input type="text" placeholder="mobile"  value={mobile} style={{borderColor:Errormobile=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setmobile(e.target.value)
+
+setErrormobile("") }}/> 
+            
+            <div style={{color:"red",fontSize:"15px"}}>{Errormobile === "" ? "" : Errormobile}</div>  
+          </div>
          <div class="input-box">
             <span class="details">Contract Name</span>
             <input type="text" placeholder="contract name" value={Cname} style={{borderColor:ErrorCname=== "" ?"#004680":'red'}} onChange={(e) => {
@@ -407,48 +453,8 @@ setErroredate("") }}/>
         
           </div>
 
-          <div class="input-box">
-            <span class="details">Last Name</span>
-            <input type="text" placeholder="last name" value={lname} style={{borderColor:Errorlname=== "" ?"#004680":'red'}} onChange={(e) => {
-
-setlname(e.target.value)
-
-setErrorlname("") }}/>
-<div style={{color:"red",fontSize:"15px"}}>{Errorlname === "" ? "" : Errorlname}</div>  
-   
-          </div>
-          <div class="input-box">
-            <span class="details">Gender</span>
-            <input type="text" placeholder="gender"  value={gender} style={{borderColor:Errorgender=== "" ?"#004680":'red'}} onChange={(e) => {
-
-setgender(e.target.value)
-
-setErrorgender("") }}/>
-        <div style={{color:"red",fontSize:"15px"}}>{Errorgender === "" ? "" : Errorgender}</div>  
-          </div>
          
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" placeholder="email" value={email} style={{borderColor:Erroremail=== "" ?"#004680":'red'}} onChange={(e) => {
-
-setemail(e.target.value)
-
-setErroremail("") }}/>
-            
-            <div style={{color:"red",fontSize:"15px"}}>{Erroremail === "" ? "" : Erroremail}</div>  
-
-          </div>
-
-          <div class="input-box">
-            <span class="details">Mobile</span>
-            <input type="text" placeholder="mobile"  value={mobile} style={{borderColor:Errormobile=== "" ?"#004680":'red'}} onChange={(e) => {
-
-setmobile(e.target.value)
-
-setErrormobile("") }}/> 
-            
-            <div style={{color:"red",fontSize:"15px"}}>{Errormobile === "" ? "" : Errormobile}</div>  
-          </div>
+          
 
           
          
@@ -479,10 +485,9 @@ setErrordept("") }}/>
 
           <div class="input-box">
             <span class="details">File Upload</span>
-            <input type="file" placeholder="Choose File" value={ufile} style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={(e) => {
-              setufile(e.target.value)
-
-setErrorufile("") }}/>
+            <input type="file" name="ufile" placeholder="Choose File"  style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={handleFile}     
+           
+             />
 <div style={{color:"red",fontSize:"15px"}}>{Errorufile === "" ? "" : Errorufile}</div>  
           </div>
 

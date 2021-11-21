@@ -55,7 +55,7 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
 {Fileddata:data} 
 ).then((res)=>{console.log(res.data)
  })}  */
- /* const [diff,setdiff]=useState("");
+  const [diff,setdiff]=useState("");
  const[Errordiff,setErrordiff]=useState("");
  let today = new Date(Date.now()).toLocaleDateString();
             let expire = new Date(updateedate);
@@ -64,19 +64,18 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
             console.log(daysleft);
             
   
-const alert = (e) =>{
-  e.preventDefault()
+
   if(daysleft<0)
   {
-    setErrordiff("EXPIRED")
+    alert("EXPIRED")
   }
   else if(daysleft<30){
-    setErrordiff("EXPIRING ON",daysleft)
+    alert("EXPIRING ON",daysleft)
   }
   else{
-    setErrordiff("RUNNING")
+    alert("RUNNING")
   }
-} */
+
     return(
       <div className="bdy">
         <div class="container">
@@ -131,9 +130,9 @@ const alert = (e) =>{
             <input type="submit" value="Ok"  onClick={(e) => alert(e)}/>
           </div>  */}
 
-           {/*  <div class="button">
-            <input type="submit" value="Back" /> 
-          </div> */}
+             <div class="button">
+            <input type="submit" value="Back" onClick={() =>page()}/> 
+          </div> 
           </div>
         </form>
        

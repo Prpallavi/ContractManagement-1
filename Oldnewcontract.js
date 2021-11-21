@@ -3,7 +3,7 @@ import './Detailsview.css';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
-function Details() {
+function Oldnew() {
   let history = useNavigate();
 
  /*  const [status, setStatus] = useState("")
@@ -80,6 +80,8 @@ for(var i in form){
 
 
 const [diff,setDiff]=useState("");
+const [email, setemail] = useState([])
+console.log(email)
     return(
 
       <div class="dbg">
@@ -100,6 +102,7 @@ const [diff,setDiff]=useState("");
        
         {form.map((e=>{
          /*  console.log(e); */
+         if(e.email===response.data.email){
        
             
          
@@ -123,7 +126,7 @@ const [diff,setDiff]=useState("");
            <div class="col col-4" data-label="Amount">{e.amount}</div>
            <div class="col col-6" data-label="Start Date">{e.startdate}</div>
            <div class="col col-7" data-label="Due Date">{e.enddate}</div>
-           <div class="col col-8" style={{fontWeight:"bold", color: daysleft<=0?"red":daysleft<30?"#FFC300":"green"}} data-label="Status">{daysleft<=0?"EXPIRED":daysleft<30?"EXPIRING SOON":"RUNNING"}</div> 
+           <div class="col col-8" style={{fontWeight:"bold",color: daysleft<=0?"red":daysleft<30?"#FFC300":"green"}} data-label="Status">{daysleft<=0?"EXPIRED":daysleft<30?"EXPIRING SOON":"RUNNING"}</div> 
            <div class="col col-8" data-label="Action" > 
 
            <button type="button" class="budgetbutton2" >
@@ -141,10 +144,10 @@ const [diff,setDiff]=useState("");
                      </button>
               </div>      
          </li>
-           )
+           )}
         }))}  
      
-            
+         
        </ul>
        
      </div>
@@ -154,4 +157,4 @@ const [diff,setDiff]=useState("");
     
     );
 }
-export default Details;
+export default Oldnew;
