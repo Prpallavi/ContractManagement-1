@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Updatecontract.css';
+import './Viewdata.css';
 import './Header.js';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
@@ -25,7 +25,7 @@ const navigate=useNavigate()
     navigate('/details')
 
   }
-  const updateTask =()=>{
+  const viewTask =()=>{
     axios.put('http://localhost:9090/update_contract',{
         _id:location.state._id,
         firstname:updateFname,
@@ -55,65 +55,85 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
 {Fileddata:data} 
 ).then((res)=>{console.log(res.data)
  })}  */
+ /* const [diff,setdiff]=useState("");
+ const[Errordiff,setErrordiff]=useState("");
+ let today = new Date(Date.now()).toLocaleDateString();
+            let expire = new Date(updateedate);
+            let difference = new Date(expire).getTime() - new Date(today).getTime();
+            let daysleft= difference / (1000 * 3600 * 24);
+            console.log(daysleft);
+            
+  
+const alert = (e) =>{
+  e.preventDefault()
+  if(daysleft<0)
+  {
+    setErrordiff("EXPIRED")
+  }
+  else if(daysleft<30){
+    setErrordiff("EXPIRING ON",daysleft)
+  }
+  else{
+    setErrordiff("RUNNING")
+  }
+} */
     return(
       <div className="bdy">
         <div class="container">
     <div class="title">View Contract</div>
-    <div class="content">
-      <form action="/details" >
+    <div class="vcontent">
+      <form>
         <div class="user-details">
-          <div class="input-box">
+          <div class="vinput-box">
+            
             <span class="details">First Name</span>
-           <h3>{updateFname}</h3>
+           <h4>{updateFname}</h4>
             
           </div>
           
            
        
-          <div class="input-box">
+          <div class="vinput-box">
             <span class="details">Contract Name</span>
-           <h3>{updateCname} </h3>
+           <h4>{updateCname} </h4>
             
           </div>
-          <div class="input-box">
+          <div class="vinput-box">
             <span class="details">Contract Type</span>
-           <h3>{updateCtype} </h3>
+           <h4>{updateCtype} </h4>
            
         
           </div>
-          <div class="input-box">
+          <div class="vinput-box">
             <span class="details">Parties</span>
-            <h3>{updateparties} 
+            <h4>{updateparties} 
 
- </h3>
+ </h4>
             </div>
-          <div class="input-box">
+          <div class="vinput-box">
             <span class="details">Amount</span>
-            <h3> {updateamount} </h3> 
+            <h4> {updateamount} </h4> 
          
          
           </div>
-          <div class="input-box">
+          <div class="vinput-box">
             <span class="details">Start Date</span>
-         <h3> {updatesdate}</h3>
+         <h4> {updatesdate}</h4>
           </div>
-          <div class="input-box">
-            <span class="details">End Date</span>
-           <h3>{updateedate} </h3>
+          <div class="vinput-box"style={{marginRight:"300px"}}>
+            <span class="details"  >End Date</span>
+             <h4>{updateedate} </h4>
+   
+
 </div>
           
-       
-<div class="button">
-            <input type="submit" value="Back" onClick={()=>{updateTask()
-                         setFname('')
-                        setCname('')
-                        setCtype('')
-                        setAmount('')
-                        setparties('')
-                        setsdate('')
-                        setedate('') 
-                        }}/>
-          </div>
+{/* <div class="button">
+            <input type="submit" value="Ok"  onClick={(e) => alert(e)}/>
+          </div>  */}
+
+           {/*  <div class="button">
+            <input type="submit" value="Back" /> 
+          </div> */}
           </div>
         </form>
        

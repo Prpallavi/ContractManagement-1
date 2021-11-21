@@ -9,8 +9,8 @@ function Home() {
         <div class="homecontainer">
 	<div class="titular">	
 		
-		<img src='https://cdn.wallpapersafari.com/26/38/8qoSKV.jpg' className="bg" height="650px"width="100%"/>
-		<div class="centered" style={{position: "absolute",top: "50%",left: "30%",color:'white',fontSize:"50px",fontWeight:"bold"}}>CONTRACT MANAGEMENT</div>
+		<img src='https://cdn.wallpapersafari.com/26/38/8qoSKV.jpg' className="bg" height="620px"width="100%"/>
+		<div class="centered" style={{position: "absolute",top: "50%",left: "30%",color:'#FFFFF7',fontSize:"50px",fontWeight:"bold",overflow:"hidden"}}>CONTRACT MANAGEMENT</div>
 	</div>
 	<div class="context">
 		<br/><br/>

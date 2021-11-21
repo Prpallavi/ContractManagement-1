@@ -116,7 +116,7 @@ setAmount(e.target.value)
           </div>
           <div class="input-box">
             <span class="details">Start Date</span>
-          <input type="date" placeholder="dd/mm/yyy"  value={updatesdate} onChange={(e) => {
+          <input type="date" placeholder="dd/mm/yyy"  style={{marginRight:"100%"}} value={updatesdate} onChange={(e) => {
 
 setsdate(e.target.value)
 
