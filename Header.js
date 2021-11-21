@@ -13,6 +13,7 @@ function Nav() {
 		<li class="nav-bar_item"><Link to="/">Home</Link></li>
 		<li class="nav-bar_item"><Link to="/form">Add Contract</Link></li>
     <li class="nav-bar_item"><Link to="/details">Contract List</Link></li>
+	<li class="nav-bar_item"><Link to="/details">Expired Contract List</Link></li>
 	{/* 	<li class="nav-bar_item dropdown">
 			<a href="#">project</a>
 			<ul class="project">

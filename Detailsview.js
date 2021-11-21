@@ -56,7 +56,7 @@ function Details() {
   },[])
   
   const display =() =>{
-    return axios.get("http://localhost:9090/getform").then((res)=>{
+    return axios.get("http://localhost:9000/getform").then((res)=>{
       console.log(res.data)
       setForm(res.data)
     })
@@ -92,15 +92,15 @@ const [diff,setDiff]=useState("");
            <div class="col col-5">Parties</div>
            <div class="col col-4">Amount</div>
            <div class="col col-6">Start Date</div>
-           <div class="col col-7">End Date</div>
+           <div class="col col-7">Due Date</div>
            <div class="col col-7">Status</div>
            <div class="col col-8">Action</div>
            
          </li>
-       
+      
         {form.map((e=>{
          /*  console.log(e); */
-       
+    
             
          
             let today = new Date(Date.now()).toLocaleDateString();
@@ -130,14 +130,14 @@ const [diff,setDiff]=useState("");
              <a class="button__text2"onClick={() => {
                          /* navigate({ pathname: '/updateform', state: e })  */
                        history('/updateform', { state: e, replace:true }) 
-                     }}>Edit</a>
+                     }}>EDIT</a>
                      </button>
 <br/><br/>
                      <button type="button" class="budgetbutton2" >
              <a class="button__text2"onClick={() => {
                          /* navigate({ pathname: '/updateform', state: e })  */
                        history('/view', { state: e, replace:true }) 
-                     }}>View</a>
+                     }}>VIEW</a>
                      </button>
               </div>      
          </li>

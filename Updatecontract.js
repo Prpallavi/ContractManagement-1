@@ -26,7 +26,7 @@ const navigate=useNavigate()
 
   }
   const updateTask =()=>{
-    axios.put('http://localhost:9090/update_contract',{
+    axios.put('http://localhost:9000/update_contract',{
         _id:location.state._id,
         firstname:updateFname,
         contractname: updateCname,

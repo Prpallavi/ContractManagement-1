@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Viewdata.css';
 import './Header.js';
 import {useForm} from 'react-hook-form';
@@ -7,12 +7,14 @@ import {Link,useNavigate,useLocation} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function UpdateForm(props) {
-  
+function View(props) {
+  const[newdata,setNewdata]=useState([]);
+   
 const navigate=useNavigate()
  const location=useLocation();
-  console.log(location.state);
  
+
+   
    const[updateFname,setFname]=useState(location.state.firstname)
   const[updateCname,setCname]=useState(location.state.contractname)
   const[updateCtype,setCtype]=useState(location.state.contracttype)
@@ -26,7 +28,7 @@ const navigate=useNavigate()
 
   }
   const viewTask =()=>{
-    axios.put('http://localhost:9090/update_contract',{
+    axios.put('http://localhost:9000/update_contract',{
         _id:location.state._id,
         firstname:updateFname,
         contractname: updateCname,
@@ -65,18 +67,18 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
             
   
 
-  if(daysleft<0)
+   if(daysleft<0)
   {
-    alert("EXPIRED")
+    alert("CONTRACT EXPIRED,RENEW YOUR CONTRACT!")
   }
   else if(daysleft<30){
-    alert("EXPIRING ON",daysleft)
+    alert("CONTRACT EXPIRING SOON")
   }
   else{
-    alert("RUNNING")
-  }
-
-    return(
+    alert("CONTRACT RUNNING")
+  }  
+ 
+    return( 
       <div className="bdy">
         <div class="container">
     <div class="title">View Contract</div>
@@ -84,13 +86,13 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
       <form>
         <div class="user-details">
           <div class="vinput-box">
-            
+         
             <span class="details">First Name</span>
            <h4>{updateFname}</h4>
             
           </div>
           
-           
+          
        
           <div class="vinput-box">
             <span class="details">Contract Name</span>
@@ -122,13 +124,16 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
           <div class="vinput-box"style={{marginRight:"300px"}}>
             <span class="details"  >End Date</span>
              <h4>{updateedate} </h4>
-   
-
+          <br/>
+            
 </div>
+
+
           
 {/* <div class="button">
             <input type="submit" value="Ok"  onClick={(e) => alert(e)}/>
           </div>  */}
+
 
              <div class="button">
             <input type="submit" value="Back" onClick={() =>page()}/> 
@@ -141,4 +146,4 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
     </div>
     );
 }
-export default UpdateForm;
+export default View;

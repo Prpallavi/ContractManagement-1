@@ -7,7 +7,7 @@ import {  BrowserRouter as Router, Link, Route,Routes} from 'react-router-dom';
 import Details from './Detailsview.js';
 import Home from './Home.js';
 import View from './Viewdata.js'; 
-import Oldnew from './Oldnewcontract';
+
 
 
 function App() {
@@ -33,10 +33,7 @@ function App() {
         <Routes>
          <Route exact path="/view" element={<View/>}/>
        </Routes>
-       <Routes>
-         <Route exact path="/oldnew" element={<Oldnew/>}/>
-       </Routes>  
-       
+      
          </Router>
 
       
