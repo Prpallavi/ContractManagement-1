@@ -11,11 +11,11 @@ import "react-datepicker/dist/react-datepicker.css";
 function Form() {
 /*  const details=new FormData(); */
 
-
-  const validEmail = new RegExp(
+let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+ /*  const validEmail = new RegExp(
     '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'
- );
-  const validMobile = new RegExp('^[6-9]\d{9}$');
+ ); */
+  let validmobile=/^[6-9]\d{9}$/
   let history = useNavigate();
   const[Fname,setFname]=useState(() =>{
     const saved = localStorage.getItem("firstname");
@@ -143,14 +143,22 @@ function Form() {
 
   
   
-
+  /* const handleFile=(e)=>{
+    setufile(e.target.value) 
+    setErrorufile("")
+    setufile(e.target.files[0]);
+    console.log(ufile) 
+    const formp= new FormData();
+    formp.append("ufile",ufile)
+    } */
+   
 
   const FormValidation =()=>{axios.post("  http://localhost:9090/add",
   {firstname:Fname,contractname:Cname,contracttype:Ctype,parties:parties,amount:amount,startdate:sdate,enddate:edate,lastname:lname,gender:gender,
   email:email,mobile:mobile,companyname:comp,department:dept,file:ufile,address:adrs,description:desc} 
  ).then((res)=>{console.log(res.data)
   history('/details')})
-/*   localStorage.setItem("userdetails",details) */
+
 }
  
 /* const startdate = `${sdate.getMonth()+1}/${sdate.getDate()}/${sdate.getFullYear()}`;
@@ -158,14 +166,7 @@ console.log(startdate);
 
 const enddate = `${edate.getMonth()+1}/${sdate.getDate()}/${edate.getFullYear()}`;
 console.log(enddate); */
- /*  const handleFile=(e)=>{
- /*    setfile(e.target.value) 
-setErrorufile("")
-  setufile(e.target.files[0]);
-  console.log(ufile)
-  }
-  const formp= new FormData();
-formp.append("ufile",ufile) */
+ 
 
 /* let optionItems = Ctype.map((ct) =>
 <option key={ct.contracttype}>{ct.contracttype}</option>
@@ -235,18 +236,23 @@ const validate = (e) => {
       setErrorgender("")
     }
     if(email === ""){
-      if( !validEmail.test(email)){
-        setErroremail("*ENTER VALID EMAIL ID")
+        setErroremail("*ENTER EMAIL ID")
       }
-     
-    }
+      else if(validmail.test(email)===false)
+      {
+        setErroremail('*ENTER VALID EMAIL ID')
+      }  
     else{
       setErroremail("")
     }
     if(mobile === "" ){
-      if(!validMobile.test(mobile))
-      setErrormobile("*ENTER VALID MOBILE NUMBER")
-    }
+      setErrormobile("*ENTER MOBILE NUMBER")
+      }
+    else if (!validmobile.test(mobile)===true){
+        setErrormobile("*ENTER VALID MOBILE NUMBER")
+      }
+    
+   
     else{
       setErrormobile("")
     }
@@ -300,7 +306,7 @@ const validate = (e) => {
 <div class="container">    
     <div class="title">Registration</div>
     <div class="content">
-      <form action="#" onsubmit="return validateForm()" method="post">
+      <form action="#" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
