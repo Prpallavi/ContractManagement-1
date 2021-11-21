@@ -7,6 +7,7 @@ import {  BrowserRouter as Router, Link, Route,Routes} from 'react-router-dom';
 import Details from './Detailsview.js';
 import Home from './Home.js';
 import View from './Viewdata.js'; 
+import Contractlink from './Linkcontracts';
 
 
 
@@ -32,6 +33,9 @@ function App() {
        </Routes>
         <Routes>
          <Route exact path="/view" element={<View/>}/>
+       </Routes>
+       <Routes>
+         <Route exact path="/conlink" element={<Contractlink/>}/>
        </Routes>
       
          </Router>

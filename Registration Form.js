@@ -83,7 +83,7 @@ let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   }) 
-  const[ufile,setUfile]=useState()
+  const[ufile,setUfile]=useState([])
   /* () =>{
     const saved = localStorage.getItem("file");
     const initialValue = JSON.parse(saved);
@@ -141,25 +141,25 @@ let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\
   const[Erroradrs,setErroradrs]=useState("")
   const[Errordesc,setErrordesc]=useState("")
 
-  
-  /* 
+ const onInputChange = (e) =>{
+   
+
+ }
+   
    const handleFile=(e)=>{
-     setufile(e.target.value)  
+       
     setErrorufile("")
     setUfile(e.target.files[0]);
     console.log(ufile) 
    
     } 
-    const formp= new FormData();
-     ufileformp.append("firstname",Fname)
-    formp.append("lastname",lname)
-    formp.append("gender",gender) 
-    formp.append("ufile",ufile) 
-    */
+    const upload= new FormData();
+    upload.append("ufile",ufile) 
+    
 
   const FormValidation =()=>{axios.post("  http://localhost:9000/add",
    {firstname:Fname,contractname:Cname,contracttype:Ctype,parties:parties,amount:amount,startdate:sdate,enddate:edate,lastname:lname,gender:gender,
-  email:email,mobile:mobile,companyname:comp,department:dept,file:ufile,address:adrs,description:desc}  
+  email:email,mobile:mobile,companyname:comp,department:dept,file:upload,address:adrs,description:desc}  
 ).then((res)=>{console.log(res.data)
   history('/details')})
 
@@ -485,10 +485,7 @@ setErrordept("") }}/>
 
           <div class="input-box">
             <span class="details">File Upload</span>
-            <input type="file" name="ufile" placeholder="Choose File" value={ufile} style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={(e)=>{
- setUfile(e.target.value)
-
- setErrorufile("") }}/>
+            <input type="file" name="ufile" placeholder="Choose File" value={ufile} style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={handleFile }/>
 <div style={{color:"red",fontSize:"15px"}}>{Errorufile === "" ? "" : Errorufile}</div>  
           </div>
 
