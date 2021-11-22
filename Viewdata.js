@@ -87,43 +87,43 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
         <div class="user-details">
           <div class="vinput-box">
          
-            <span class="details">First Name</span>
-           <h4>{updateFname}</h4>
+            <span class="details" style={{fontWeight:"bold"}}>First Name</span>
+           <p>{updateFname}</p>
             
           </div>
           
           
        
           <div class="vinput-box">
-            <span class="details">Contract Name</span>
-           <h4>{updateCname} </h4>
+            <span class="details" style={{fontWeight:"bold"}}>Contract Name</span>
+           <p>{updateCname} </p>
             
           </div>
           <div class="vinput-box">
-            <span class="details">Contract Type</span>
-           <h4>{updateCtype} </h4>
+            <span class="details"style={{fontWeight:"bold"}}>Contract Type</span>
+           <p>{updateCtype} </p>
            
         
           </div>
           <div class="vinput-box">
-            <span class="details">Parties</span>
-            <h4>{updateparties} 
+            <span class="details"style={{fontWeight:"bold"}}>Parties</span>
+            <p>{updateparties} 
 
- </h4>
+ </p>
             </div>
           <div class="vinput-box">
-            <span class="details">Amount</span>
-            <h4> {updateamount} </h4> 
+            <span class="details"style={{fontWeight:"bold"}}>Amount</span>
+            <p > {updateamount} </p> 
          
          
           </div>
           <div class="vinput-box">
-            <span class="details">Start Date</span>
-         <h4> {updatesdate}</h4>
+            <span class="details"style={{fontWeight:"bold"}}>Start Date</span>
+         <p> {updatesdate}</p>
           </div>
           <div class="vinput-box"style={{marginRight:"300px"}}>
-            <span class="details"  >End Date</span>
-             <h4>{updateedate} </h4>
+            <span class="details"style={{fontWeight:"bold"}}>End Date</span>
+             <p>{updateedate} </p>
           <br/>
             
 </div>

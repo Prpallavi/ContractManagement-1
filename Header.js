@@ -7,13 +7,13 @@ function Nav() {
     <div>
       <nav>
 		  
-	<a class="logo" href="#">Contract</a>
+	<a class="logo" href="#">Smart Contracts</a>
 	<ul class="nav-bar">
         
 		<li class="nav-bar_item"><Link to="/">Home</Link></li>
 		<li class="nav-bar_item"><Link to="/form">Add Contract</Link></li>
-    <li class="nav-bar_item"><Link to="/details">Contract List</Link></li>
-	<li class="nav-bar_item"><Link to="/conlink">Contract List</Link></li>
+    <li class="nav-bar_item"><Link to="/details">Contracts List</Link></li>
+	<li class="nav-bar_item"><Link to="/conlink">Expired Contracts</Link></li>
 	{/* 	<li class="nav-bar_item dropdown">
 			<a href="#">project</a>
 			<ul class="project">

@@ -10,17 +10,17 @@ function Home() {
         <div class="homecontainer">
 	<div class="titular">	
 		
-		<img src={Image} className="bg" height="620px"width="100%"/>
-		<div class="centered" style={{position: "absolute",top: "50%",left: "30%",color:'#FFFFF7',fontSize:"50px",fontWeight:"bold"}}>CONTRACT MANAGEMENT</div>
-	</div>
+		<img src src={Image} className="bg" height="620px"width="100%"/>
+	{/*  <div class="centered" style={{position: "absolute",top: "50%",left: "40%",color:'#FFFFF7',fontSize:"50px",fontWeight:"bold"}}>WELCOME </div>
+ */} 
+	</div> 
+	
 	<div class="context">
 		<br/><br/>
        	</div>
-	
-        
-	
-</div>
-</div>
+	</div>
+	</div>
+
 );
 }
 export default Home;

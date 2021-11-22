@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 /* import { Link } from 'react-router-dom'; */
 function Form() {
-/*  const details=new FormData(); */
+
 
 let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
  /*  const validEmail = new RegExp(
@@ -141,25 +141,28 @@ let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\
   const[Erroradrs,setErroradrs]=useState("")
   const[Errordesc,setErrordesc]=useState("")
 
- const onInputChange = (e) =>{
-   
+ /* const onInputChange = (e) =>{
+   setUfile(e.target.files[0])
+   setErrorufile("")
 
- }
+ } */
    
-   const handleFile=(e)=>{
-       
-    setErrorufile("")
-    setUfile(e.target.files[0]);
-    console.log(ufile) 
+  /*  const onSubmit=(e)=>{
+       e.preventDefault();
+    
+      
    
-    } 
-    const upload= new FormData();
-    upload.append("ufile",ufile) 
+    }  */
+    
     
 
-  const FormValidation =()=>{axios.post("  http://localhost:9000/add",
+  const FormValidation =()=>{ 
+    /* const df= new FormData();
+    df.append("ufile",ufile) 
+    console.log(df) */
+    axios.post("  http://localhost:9000/add",
    {firstname:Fname,contractname:Cname,contracttype:Ctype,parties:parties,amount:amount,startdate:sdate,enddate:edate,lastname:lname,gender:gender,
-  email:email,mobile:mobile,companyname:comp,department:dept,file:upload,address:adrs,description:desc}  
+  email:email,mobile:mobile,companyname:comp,department:dept,file:ufile,address:adrs,description:desc}  
 ).then((res)=>{console.log(res.data)
   history('/details')})
 
@@ -485,7 +488,9 @@ setErrordept("") }}/>
 
           <div class="input-box">
             <span class="details">File Upload</span>
-            <input type="file" name="ufile" placeholder="Choose File" value={ufile} style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={handleFile }/>
+            <input type="file" name="ufile" placeholder="Choose File" value={ufile} style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={(e) =>{
+              setUfile(e.target.value)
+ setErrorufile("")} }/>
 <div style={{color:"red",fontSize:"15px"}}>{Errorufile === "" ? "" : Errorufile}</div>  
           </div>
 

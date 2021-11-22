@@ -109,7 +109,7 @@ const [diff,setDiff]=useState("");
             let daysleft= difference / (1000 * 3600 * 24);
             console.log(daysleft);
             
-          if(e.email==="prathi@gmail.com"){
+          if(daysleft<0){
 
          
             return(
@@ -131,8 +131,8 @@ const [diff,setDiff]=useState("");
            <button type="button" class="budgetbutton2" >
              <a class="button__text2"onClick={() => {
                          /* navigate({ pathname: '/updateform', state: e })  */
-                       history('/updateform', { state: e, replace:true }) 
-                     }}>EDIT</a>
+                       history('/form', { state: e, replace:true }) 
+                     }}>RENEW</a>
                      </button>
 <br/><br/>
                      <button type="button" class="budgetbutton2" >
