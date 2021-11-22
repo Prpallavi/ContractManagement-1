@@ -83,7 +83,7 @@ let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   }) 
-  const[ufile,setUfile]=useState([])
+  const[ufile,setufile]=useState([])
   /* () =>{
     const saved = localStorage.getItem("file");
     const initialValue = JSON.parse(saved);
@@ -140,27 +140,33 @@ let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\
   const[Errorufile,setErrorufile]=useState("")  
   const[Erroradrs,setErroradrs]=useState("")
   const[Errordesc,setErrordesc]=useState("")
-
- /* const onInputChange = (e) =>{
-   setUfile(e.target.files[0])
-   setErrorufile("")
-
- } */
+  const reset=()=>{
+    localStorage.clear()
+    window.location.reload();
+  }
+ /*  const Reset=()=>{
+    setFname("")
+    setlname("")
+    setgender("")
+    setemail("")
+    setmobile("")
+    setCname("")
+    setCtype("")
+    setparties("")
+    setAmount("")
+    setsdate("")
+    setedate("")
+    setcomp("")
+    setdept("")
+    setadrs("")
+    setdesc("")
+    setufile("")
    
-  /*  const onSubmit=(e)=>{
-       e.preventDefault();
-    
-      
-   
-    }  */
-    
+  } */
+     
     
 
-  const FormValidation =()=>{ 
-    /* const df= new FormData();
-    df.append("ufile",ufile) 
-    console.log(df) */
-    axios.post("  http://localhost:9000/add",
+  const FormValidation =()=>{ axios.post("  http://localhost:9090/add",
    {firstname:Fname,contractname:Cname,contracttype:Ctype,parties:parties,amount:amount,startdate:sdate,enddate:edate,lastname:lname,gender:gender,
   email:email,mobile:mobile,companyname:comp,department:dept,file:ufile,address:adrs,description:desc}  
 ).then((res)=>{console.log(res.data)
@@ -180,12 +186,14 @@ console.log(enddate); */
 ); */
 
 /*   console.log(data) */
-const validate = (e) => {
+const validate = (e) => 
+{
 
   e.preventDefault()
 
   if(Fname==="" || Cname==="" || Ctype==="" || parties===""|| amount===""||  sdate===""|| edate===""|| lname===""||
-  gender===""||email===""|| mobile===""|| comp===""|| dept===""|| ufile===""|| adrs===""|| desc===""){
+  gender===""||email===""|| mobile===""|| comp===""|| dept===""|| ufile===""|| adrs===""|| desc==="")
+  {
     if(Fname === ""){
       setErrorFname("*ENTER THE FIRST NAME")
     }
@@ -243,12 +251,13 @@ const validate = (e) => {
       setErrorgender("")
     }
     if(email === ""){
-        setErroremail("*ENTER EMAIL ID")
+        setErroremail("*ENTER  EMAIL ID")
       }
       else if(validmail.test(email)===false)
-      {
-        setErroremail('*ENTER VALID EMAIL ID')
-      }  
+        {
+          setErroremail('Enter valid Email')
+        }
+      
     else{
       setErroremail("")
     }
@@ -313,7 +322,7 @@ const validate = (e) => {
 <div class="container">    
     <div class="title">Registration</div>
     <div class="content">
-      <form  onsubmit="return validateForm()" method="post" encType="multipart/form-data">
+      <form onsubmit="return validateForm()" method="post" encType="multipart/form-data">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
@@ -482,15 +491,13 @@ setErrordept("") }}/>
 <div style={{color:"red",fontSize:"15px"}}>{Errordept === "" ? "" : Errordept}</div>  
           </div>
 
-         
-         
-         
-
           <div class="input-box">
-            <span class="details">File Upload</span>
-            <input type="file" name="ufile" placeholder="Choose File" value={ufile} style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={(e) =>{
-              setUfile(e.target.value)
- setErrorufile("")} }/>
+            <span class="details">Upload File</span>
+            <input type="file" placeholder="choose file" value={ufile} style={{borderColor:Errorufile=== "" ?"#004680":'red'}} onChange={(e) => {
+
+setufile(e.target.value)
+
+setErrorufile("") }}/>
 <div style={{color:"red",fontSize:"15px"}}>{Errorufile === "" ? "" : Errorufile}</div>  
           </div>
 
@@ -514,9 +521,13 @@ setErrordesc("") }} />
 
           </div>
       
-       
+          <div class="button">
+            <input type="reset" value="Reset"  onClick={()=>reset()}/>
+          </div>
 
-         
+          <div class="button">
+            <input type="button" value="Save"/>
+          </div>
           <div class="button">
             <input type="submit" value="Submit"  onClick={(e) => validate(e)} />
           </div>

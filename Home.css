@@ -15,7 +15,18 @@
 	height: auto;
 	background-color: #F5F5F5;
 }
-
+.a{
+    color: white;
+    font-size: 5px;
+    font-weight: bold;
+    
+    margin-bottom: 30px;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%,-50%);
+    line-height: 60px;
+}
 /* Home Page */
 .titular .tagline {
 	font-size: 60px;

@@ -12,7 +12,12 @@ function Home() {
 		
 		<img src src={Image} className="bg" height="620px"width="100%"/>
 	{/*  <div class="centered" style={{position: "absolute",top: "50%",left: "40%",color:'#FFFFF7',fontSize:"50px",fontWeight:"bold"}}>WELCOME </div>
- */} 
+ */}  
+       <p class="a"style={{position: "absolute",top: "35%",left: "45%",color:'#FFFFF7',fontSize:"50px",fontWeight:"bold"}}>
+		<br/>
+WELCOME TO<br/>
+ SMART CONTRACTS
+        </p> 
 	</div> 
 	
 	<div class="context">

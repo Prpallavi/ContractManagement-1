@@ -8,6 +8,7 @@ import Details from './Detailsview.js';
 import Home from './Home.js';
 import View from './Viewdata.js'; 
 import Contractlink from './Linkcontracts';
+import Renewform from './Renew';
 
 
 
@@ -36,6 +37,9 @@ function App() {
        </Routes>
        <Routes>
          <Route exact path="/conlink" element={<Contractlink/>}/>
+       </Routes>
+       <Routes>
+         <Route exact path="/renew" element={<Renewform/>}/>
        </Routes>
       
          </Router>

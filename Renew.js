@@ -7,7 +7,7 @@ import {Link,useNavigate,useLocation} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function UpdateForm(props) {
+function Renewform(props) {
   
 const navigate=useNavigate()
  const location=useLocation();
@@ -26,7 +26,7 @@ const navigate=useNavigate()
 
   }
   const updateTask =()=>{
-    axios.put('http://localhost:9090/update_contract',{
+    axios.put('http://localhost:9090/updateoldnew',{
         _id:location.state._id,
         firstname:updateFname,
         contractname: updateCname,
@@ -156,4 +156,4 @@ setedate(e.target.value)
     </div>
     );
 }
-export default UpdateForm;
+export default Renewform;

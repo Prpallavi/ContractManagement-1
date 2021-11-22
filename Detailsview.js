@@ -56,7 +56,7 @@ function Details() {
   },[])
   
   const display =() =>{
-    return axios.get("http://localhost:9000/getform").then((res)=>{
+    return axios.get("http://localhost:9090/getform").then((res)=>{
       console.log(res.data)
       setForm(res.data)
     })
@@ -130,6 +130,7 @@ const [diff,setDiff]=useState("");
              <a class="button__text2"onClick={() => {
                          /* navigate({ pathname: '/updateform', state: e })  */
                        history('/updateform', { state: e, replace:true }) 
+                       
                      }}>EDIT</a>
                      </button>
 <br/><br/>
