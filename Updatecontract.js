@@ -126,7 +126,7 @@ setsdate(e.target.value)
          
       
           </div>
-          <div class="input-box">
+          <div class="input-box" style={{marginRight:"100px"}}>
             <span class="details">End Date</span>
             <input type="date" placeholder="dd/mm/yyy" value={updateedate} onChange={(e) => {
 

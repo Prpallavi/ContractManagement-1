@@ -83,7 +83,7 @@ let validmail=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   }) 
-  const[ufile,setufile]=useState([])
+  const[ufile,setufile]=useState("")
   /* () =>{
     const saved = localStorage.getItem("file");
     const initialValue = JSON.parse(saved);
@@ -232,7 +232,7 @@ const validate = (e) =>
   else {
     setErrorsdate("")
   }
-  if (edate === "") {
+  if (edate === "" || (edate < sdate)) {
     setErroredate("*CHOOSE THE DATE GREATER THAN STARTDATE")
   }
   else {
@@ -420,7 +420,7 @@ setErrorAmount("") }}/>
           <div class="input-box">
             <span class="details">Start Date</span>
       
-            <input type="date" placeholder="date" value={sdate} style={{borderColor:Errorsdate=== "" ?"#004680":'red'}} onChange={(e) => {
+           <input type="date" placeholder="date" value={sdate} style={{borderColor:Errorsdate=== "" ?"#004680":'red'}} onChange={(e) => {
 
 setsdate(e.target.value)
 
@@ -429,7 +429,7 @@ setErrorsdate("") }}/>
              onChange={(date) => {
               {setsdate(date)}
           
-                setErrorsdate("")}} placeholderText="date" />   */}
+                setErrorsdate("")}} placeholderText="date" />  */}  
 
 
 <div style={{color:"red",fontSize:"15px"}}>{Errorsdate === "" ? "" : Errorsdate}</div>   
@@ -445,21 +445,22 @@ setErrorsdate("") }}/>
          
           <div class="input-box">
             <span class="details">End Date</span>
-              <input type="date" placeholder="date" value={edate} style={{borderColor:Erroredate=== "" ?"#004680":'red'}} onChange={(e) => {
+             <input type="date" placeholder="date" value={edate} style={{borderColor:Erroredate=== "" ?"#004680":'red'}} onChange={(e) => {
 
 setedate(e.target.value)
 
 setErroredate("") }}/>
-<div style={{color:"red",fontSize:"15px"}}>{Erroredate === "" ? "" : Erroredate}</div>    
- {/* <DatePicker selected={edate} disableClock={true} style={{borderColor:Erroredate=== "" ?"#004680":'red'}}
+<div style={{color:"red",fontSize:"15px"}}>{Erroredate === "" ? "" : Erroredate}</div>     
+ {/*  <DatePicker selected={edate} disableClock={true} style={{borderColor:Erroredate=== "" ?"#004680":'red'}}
     onChange={date => {setedate(date)
       setedate(date)
 
       setErroredate("") }} 
     minDate={new Date(sdate)} //<-- here put as minDate the startDate so user cannot select a date less than startDate
-    placeholderText="Select a date"  dateFromat='YYYY-MM-dd' 
-/> */}
-<div style={{color:"red",fontSize:"15px"}}>{Erroredate === "" ? "" : Erroredate}</div>
+    placeholderText="Select a date"
+/>  */}
+{/* <div style={{color:"red",fontSize:"15px"}}>{Erroredate === "" ? "" : Erroredate}</div> */}
+
             {/* { errors.ed?.type === "istartdateateInFuture" && <p>Please choose Future date!</p> } */}
           {/*   {errors.ed && (<p className="errorshow">{errors.ed.message}</p>)}   */}   
         

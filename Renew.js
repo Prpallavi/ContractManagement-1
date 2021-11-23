@@ -20,13 +20,14 @@ const navigate=useNavigate()
   const[updateparties,setparties]=useState(location.state.parties)
   const[updatesdate,setsdate]=useState(location.state.startdate)
   const[updateedate,setedate]=useState(location.state.enddate) 
+ 
   const page=()=>{
 
     navigate('/details')
 
   }
   const updateTask =()=>{
-    axios.put('http://localhost:9090/updateoldnew',{
+    axios.post('http://localhost:9090/add',{
         _id:location.state._id,
         firstname:updateFname,
         contractname: updateCname,
@@ -72,8 +73,6 @@ setFname(e.target.value)
             
           </div>
           
-           
-       
           <div class="input-box">
             <span class="details">Contract Name</span>
             <input type="text" placeholder="last name" value={updateCname} onChange={(e) => {
@@ -134,11 +133,13 @@ setedate(e.target.value)
 
  }}/>
 </div>
+
+
 <div class="button">
            
           </div>
           <div class="button">
-            <input type="submit" value="Update" onClick={()=>{updateTask()
+            <input type="submit" value="Renew" onClick={()=>{updateTask()
                          setFname('')
                         setCname('')
                         setCtype('')

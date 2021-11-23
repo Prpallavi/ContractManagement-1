@@ -181,7 +181,7 @@ const onSubmit=(data)=>{axios.put("http://localhost:9090/update_contract",
            <p>{updateadrs}</p>
             
           </div>
-          <div class="vinput-box" style={{left:"10%"}}>
+          <div class="vinput-box" style={{marginRight:"100px"}}>
            <span class="details" style={{fontWeight:"bold"}}>Description</span>
            <p>{updatedesc}</p>
             

@@ -41,7 +41,7 @@ background-size: cover;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-   margin: 20px 0 12px 0; 
+/*    margin: 20px 0 12px 0; */ 
 }
 form .user-details .vinput-box{
   margin-bottom: 15px;
